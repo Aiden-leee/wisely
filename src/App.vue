@@ -1,16 +1,23 @@
 <template>
   <div id="app">
     <Cart />
+    <ShaveModal v-if="isModal"/>
   </div>
 </template>
 
 <script>
-import Cart from './components/Cart.vue'
-
+import Cart from './components/Cart.vue';
+import ShaveModal from './components/ShaveModal';
 export default {
   name: 'App',
   components: {
-    Cart
+    Cart,
+    ShaveModal
+  },
+  computed: {
+    isModal(){
+      return this.$store.state.shave_modal
+    }
   }
 }
 </script>
