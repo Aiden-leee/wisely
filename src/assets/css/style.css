@@ -1,0 +1,199 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+  background: #fafafa;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+*, :after, :before {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+a {
+  color: #666;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+}
+
+button:focus {
+  outline: none;
+}
+
+input:focus,
+input:active {
+  outline: 0;
+}
+
+.cart {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.cart_header {
+  padding: 21px 0;
+  height: 60px;
+  border-bottom: 1px solid #f5f5f5;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.cart_header img {
+  display: inline;
+}
+
+.cart_content {
+  padding: 0 15px;
+}
+
+.cart_content .cart_list {
+  padding: 58px 0;
+}
+
+.cart_content .cart_list > p {
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 300;
+}
+
+.cart_content .items .item_box {
+  background: #fcfcfc;
+  padding: 12px 22px;
+  height: 108px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 4px;
+  -webkit-box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.08);
+          box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  margin-bottom: 12px;
+}
+
+.cart_content .items .item_box:after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+.cart_content .items .item_box .item {
+  position: relative;
+  float: left;
+  text-align: left;
+  height: 100%;
+}
+
+.cart_content .items .item_box .item.item_img {
+  margin-right: 17px;
+  width: 84px;
+  height: 84px;
+}
+
+.cart_content .items .item_box .item.item_img > img {
+  max-width: 100%;
+}
+
+.cart_content .items .item_box .item.item_des {
+  width: calc(100% - 101px);
+  padding-right: 42px;
+}
+
+.cart_content .items .item_box .item.item_des .wrap {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.cart_content .items .item_box .item.item_des .wrap > .item_des_title {
+  font-size: 16px;
+  margin-bottom: 8px;
+  font-weight: 400;
+  color: #3a3a3a;
+}
+
+.cart_content .items .item_box .item.item_des .wrap > .item_des_info {
+  display: inline-block;
+  margin-bottom: 11px;
+  font-size: 12px;
+  color: #979797;
+}
+
+.cart_content .items .item_box .item.item_des .wrap > .item_des_price .price {
+  font-size: 14px;
+  color: #0F5783;
+  font-weight: 400;
+}
+
+.cart_content .items .item_box .item.item_des .wrap > .item_des_price .info {
+  display: inline-block;
+  margin-left: 4px;
+  width: 46px;
+  height: 20px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 18px;
+  color: #0055B8;
+  font-size: 10px;
+  border: 1px solid #0055B8;
+  border-radius: 2px;
+}
+
+.cart_content .items .item_box .item.item_des .add {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
