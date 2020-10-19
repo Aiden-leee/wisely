@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Cart />
-    <ShaveModal v-if="isModal"/>
+    <ShaveModal :class="{active: isModal}"/>
   </div>
 </template>
 
@@ -31,7 +31,6 @@ export default {
   color: #3a3a3a;
   margin: 0 auto;
   min-width: 360px;
-  max-width: 414px;
   height: 100vh;
   background: #fff;
 }

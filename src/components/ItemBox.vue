@@ -8,7 +8,7 @@
             <div class="wrap">
                 <h3 class="item_des_title">{{item.title}}</h3>
                 <span class="item_des_info">{{item.des}}</span>
-                <div class="item_des_price"><span class="price">{{item.price}}원</span><span class="info">무료배송</span></div>
+                <div class="item_des_price"><span class="price">{{item.price.toLocaleString()}}원</span><span class="info">무료배송</span></div>
             </div>
             <div class="add">
                 <img src="https://wiselyshave-cdn.s3.amazonaws.com/assets/images/plusInCircle.svg" alt="add">

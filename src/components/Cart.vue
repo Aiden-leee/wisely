@@ -18,7 +18,7 @@
                         </div>
                         <div class="total">
                             <span class="total_text">최종 결제 금액</span>
-                            <span class="total_price">8,900원</span>
+                            <span class="total_price">{{getTotalPrice}}원</span>
                         </div>
                     </div>
                     <div class="selected_payment">
@@ -52,7 +52,6 @@ export default {
     },
     data(){
         return {
-
         }
     },
     computed: {
@@ -61,6 +60,14 @@ export default {
         },
         getItemList(){
             return this.$store.state.items;
+        },
+        getTotalPrice(){
+            let price = 0;
+            this.$store.state.cart.forEach(item=>{
+                price += item.price * item.quantity;
+            })
+            this.$store.commit('totalPrice', price)
+            return price;
         }
     },
     mounted(){
