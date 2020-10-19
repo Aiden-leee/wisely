@@ -33,7 +33,7 @@ export default {
                 this.$store.commit("addCart", item)
                 this.$store.commit("updateItems", item)
             }else {
-                this.$store.commit("shave_modal", true)
+                this.$store.commit("shave_modal", [true])
             }
 
         }

@@ -9,6 +9,7 @@ const store = new Vuex.Store({
         total_price: 0,
         cart: [],
         shave_modal: false,
+        shave_color: 1, // 1: navy, 2: blue, 3: gray
         items: [
             {
                 id: 1,
@@ -46,7 +47,6 @@ const store = new Vuex.Store({
         ]
     },
     getters: {
- 
     },
     mutations: {
         // 카트 상품 추가
@@ -88,6 +88,9 @@ const store = new Vuex.Store({
                 }
             })
         },
+        getColor(state, color){
+            state.shave_color = color;
+        },
         // 총 가격
         totalPrice(state, price){
             state.total_price = price;
@@ -97,8 +100,17 @@ const store = new Vuex.Store({
             state.total_count = count
         },
         // 모달 팝업 상태값 
-        shave_modal(state, payload){
-            state.shave_modal = payload
+        shave_modal(state, [payload, shave]){
+            // 면도기 색상 선택 후 아이템 추가
+            if(shave) {
+                let result = state.items.find(tem=>{
+                    return tem.id === 1;
+                })
+                store.commit('addCart', result);
+                store.commit('updateItems', result)
+            }
+            state.shave_modal = payload;
+
         }
     }
 })

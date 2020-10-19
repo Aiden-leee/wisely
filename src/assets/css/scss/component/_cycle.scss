@@ -1,0 +1,94 @@
+.cycle {
+    width: 100%;
+    height: 100%;
+    .cart_header {
+        position: relative;
+        &:after {
+            content: "";
+            clear: both;
+            display: block;
+        }
+        .left {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .right {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            .currentCart {
+                display: table;
+                cursor: pointer;
+                &:after {
+                    content: "";
+                    clear: both;
+                    display: block;
+                }
+                > div {
+                    display: table-cell;
+                    vertical-align: middle;
+                    &.cart_icon {
+                        width: 50px;
+                        height: 30px;
+                        background: url('~@/assets/img/cart_off.svg') no-repeat -2px;
+                        &.hasItem {
+                            background: url('~@/assets/img/cart_on.svg') no-repeat -2px;
+                        }
+                        .count {
+                            display: inline-block;
+                            color: #ffc01e;
+                            margin-top: -5px;
+                            vertical-align: top;
+                            font-size: 10px;
+                            letter-spacing: -.04em;
+                        }
+                    }
+                    &.currentPrice {
+                        > span {
+                            position: relative;
+                            display: inline-block;
+                            padding-right: 20px;
+                            font-size: 16px;
+                            font-weight: 400;
+                            &:after {
+                                content: "";
+                                position: absolute;
+                                right:0;
+                                top: 0;
+                                width: 20px;
+                                height: 20px;
+                                background: url('~@/assets/img/arrow.svg') no-repeat center;
+                            }
+                        }
+                        &.active {
+                            > span {
+                                &:after {
+                                    transform: rotate(180deg);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .cycle_content {
+        .cycle_title {
+            padding: 26px 0 24px;
+            font-size: 24px;
+            font-weight: 300;
+            letter-spacing: -0.06em;
+            color: #1E314A;
+        }
+    }
+}
+.slide-enter-active, .slide-leave-active {
+    transition: transform .4s ease-in-out, opacity .4s;
+}
+.slide-enter, .slide-leave-to  {
+    opacity: 0;
+    transform: translateX(100%);
+}

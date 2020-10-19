@@ -19,7 +19,7 @@
                   </div>
               </div>
               <div class="select_box">
-                  <button class="select_btn">선택하기</button>
+                  <button class="select_btn" @click="selectAddColorCart">선택하기</button>
               </div>
           </div>
       </div>
@@ -54,43 +54,53 @@ export default {
                     isShow: false,
                 }
             ],
-            currentColor: 0,
+            currentColor: 1,
         }
     },
     computed: {
-       currentColorName(){
+        // 현재 색상명
+        currentColorName(){
            let result = this.shave_colors.filter(item=>{
                if(item.isShow){
                    return item.name
                }
            })
            return result[0].name
-       },
-       currentClass(){
+        },
+        // 현재 색상 클래스
+        currentClass(){
            let result = this.shave_colors.filter(item=>{
                if(item.isShow){
                    return item.class
                }
            })
            return result[0].class
-       },
-       modalState(){
+        },
+        // modal status (boolean)
+        modalState(){
            return this.$store.state.shave_modal
-       }
-    },
-    mounted(){
+        }
     },
     methods: {
-        closeOverlay(){
-            this.$store.commit("shave_modal", false)
+        selectAddColorCart(e){
+            e.stopPropagation();
+            this.$store.commit("getColor", this.currentColor);
+            this.$store.commit("shave_modal", [false, true]);
         },
+        // modal overlay close
+        closeOverlay(){
+            this.$store.commit("shave_modal", [false])
+        },
+        // child bubbling stop
         bubbleGuard(e){
             e.stopPropagation();
         },
+        // color select
         selectColor(current){
             this.shave_colors.find(item=>{
                 if(current.id === item.id ){
                     item.isShow = true
+                    this.currentColor = current.id
                 }else {
                     item.isShow = false
                 }

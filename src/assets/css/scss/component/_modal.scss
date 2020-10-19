@@ -8,6 +8,7 @@
     opacity: 0;
     background: rgba(0,0,0,0.6);
     transition: visibility .4s ease-in-out, opacity .4s;
+    z-index: 10;
     &.active {
         visibility: visible;
         opacity: 1;
@@ -31,9 +32,10 @@
             .h_title {
                 padding: 24px;
                 text-align: left;
-                font-size: 26px;
+                font-size: 24px;
                 color: #1E314A;
                 font-weight: 300;
+                letter-spacing: -.06em;
             }
             .shave_colors {
                 position: relative;

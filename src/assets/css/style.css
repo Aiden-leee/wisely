@@ -165,6 +165,19 @@ input:active {
   color: #979797;
 }
 
+.cart_content .cart_list .selected_item_box .selected_item.item_des .wrap > .item_des_info .item_color.navy {
+  color: #1E314A;
+}
+
+.cart_content .cart_list .selected_item_box .selected_item.item_des .wrap > .item_des_info .item_color.blue {
+  color: #1888D9;
+}
+
+.cart_content .cart_list .selected_item_box .selected_item.item_des .wrap > .item_des_info .item_color.gray {
+  font-weight: 400;
+  color: #858585;
+}
+
 .cart_content .cart_list .selected_item_box .selected_item.item_des .wrap > .item_des_price .price {
   font-size: 14px;
   color: #0F5783;
@@ -417,6 +430,116 @@ input:active {
           transform: translateY(-50%);
 }
 
+.cycle {
+  width: 100%;
+  height: 100%;
+}
+
+.cycle .cart_header {
+  position: relative;
+}
+
+.cycle .cart_header:after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+.cycle .cart_header .left {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.cycle .cart_header .right {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.cycle .cart_header .right .currentCart {
+  display: table;
+  cursor: pointer;
+}
+
+.cycle .cart_header .right .currentCart:after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+.cycle .cart_header .right .currentCart > div {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.cycle .cart_header .right .currentCart > div.cart_icon {
+  width: 50px;
+  height: 30px;
+  background: url("~@/assets/img/cart_off.svg") no-repeat -2px;
+}
+
+.cycle .cart_header .right .currentCart > div.cart_icon.hasItem {
+  background: url("~@/assets/img/cart_on.svg") no-repeat -2px;
+}
+
+.cycle .cart_header .right .currentCart > div.cart_icon .count {
+  display: inline-block;
+  color: #ffc01e;
+  margin-top: -5px;
+  vertical-align: top;
+  font-size: 10px;
+  letter-spacing: -.04em;
+}
+
+.cycle .cart_header .right .currentCart > div.currentPrice > span {
+  position: relative;
+  display: inline-block;
+  padding-right: 20px;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.cycle .cart_header .right .currentCart > div.currentPrice > span:after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  background: url("~@/assets/img/arrow.svg") no-repeat center;
+}
+
+.cycle .cart_header .right .currentCart > div.currentPrice.active > span:after {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+.cycle .cycle_content .cycle_title {
+  padding: 26px 0 24px;
+  font-size: 24px;
+  font-weight: 300;
+  letter-spacing: -0.06em;
+  color: #1E314A;
+}
+
+.slide-enter-active, .slide-leave-active {
+  -webkit-transition: opacity .4s, -webkit-transform .4s ease-in-out;
+  transition: opacity .4s, -webkit-transform .4s ease-in-out;
+  transition: transform .4s ease-in-out, opacity .4s;
+  transition: transform .4s ease-in-out, opacity .4s, -webkit-transform .4s ease-in-out;
+}
+
+.slide-enter, .slide-leave-to {
+  opacity: 0;
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
+}
+
 .shave_modal {
   visibility: hidden;
   position: fixed;
@@ -428,6 +551,7 @@ input:active {
   background: rgba(0, 0, 0, 0.6);
   -webkit-transition: visibility .4s ease-in-out, opacity .4s;
   transition: visibility .4s ease-in-out, opacity .4s;
+  z-index: 10;
 }
 
 .shave_modal.active {
@@ -459,9 +583,10 @@ input:active {
 .shave_modal .wrap .box .h_title {
   padding: 24px;
   text-align: left;
-  font-size: 26px;
+  font-size: 24px;
   color: #1E314A;
   font-weight: 300;
+  letter-spacing: -.06em;
 }
 
 .shave_modal .wrap .box .shave_colors {

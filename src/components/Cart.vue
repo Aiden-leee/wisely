@@ -22,7 +22,7 @@
                         </div>
                     </div>
                     <div class="selected_payment">
-                        <button class="payment">주문하기</button>
+                        <router-link to="/phase_cycle" tag="button" class="payment">주문하기</router-link>
                     </div>
                     <div class="selected_delivery_info">
                         <p><span>1.5만원 이상 무료 배송</span><span>평일 16시 이전 주문 시 당일 출고</span></p>
@@ -55,12 +55,15 @@ export default {
         }
     },
     computed: {
+        // 카트 목록
         getCartList(){
             return this.$store.state.cart
         },
+        // 기본 아이템 목록
         getItemList(){
             return this.$store.state.items;
         },
+        // 총 금액
         getTotalPrice(){
             let price = 0;
             this.$store.state.cart.forEach(item=>{
@@ -68,6 +71,16 @@ export default {
             })
             this.$store.commit('totalPrice', price)
             return price;
+        },
+        // 총 개수
+        getTotalCount(){
+            let count = 0;
+            this.$store.state.cart.forEach(item=>{
+                count += item.quantity
+            })
+            this.$store.commit("totalCount", count)
+            return count
+
         }
     },
     mounted(){

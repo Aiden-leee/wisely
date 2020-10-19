@@ -1,18 +1,18 @@
 <template>
   <div id="app">
-    <Cart />
-    <ShaveModal :class="{active: isModal}"/>
+      <ShaveModal :class="{active: isModal}"/>
+        <transition name="slide" mode="out-in">
+            <router-view></router-view>
+        </transition>
   </div>
 </template>
 
 <script>
-import Cart from './components/Cart.vue';
 import ShaveModal from './components/ShaveModal';
 export default {
   name: 'App',
   components: {
-    Cart,
-    ShaveModal
+    ShaveModal,
   },
   computed: {
     isModal(){

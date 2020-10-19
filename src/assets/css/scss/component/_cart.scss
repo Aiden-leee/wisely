@@ -32,7 +32,7 @@
             box-sizing: border-box;
             transition: transform .4s ease-in-out;
             &.active {
-                
+
             }
             &:after {
                 content: "";
@@ -70,6 +70,18 @@
                             margin-bottom: 11px;
                             font-size: 12px;
                             color: #979797;
+                            .item_color {
+                                &.navy {
+                                    color: #1E314A;
+                                }
+                                &.blue {
+                                    color: #1888D9;
+                                }
+                                &.gray {
+                                    font-weight: 400;
+                                    color: #858585;
+                                }
+                            }
                         }   
                         > .item_des_price {
                             .price {

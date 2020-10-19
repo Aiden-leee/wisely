@@ -7,7 +7,7 @@
         <div class="selected_item item_des">
             <div class="wrap">
                 <h3 class="item_des_title">{{item.title}}</h3>
-                <span class="item_des_info">{{item.des}}</span>
+                <span class="item_des_info"><span class="item_color" :class="[selectShaveColorClass]">{{selectShaveColorName}}</span>{{item.des}}</span>
                 <div class="item_des_price"><span class="price">{{item.price.toLocaleString()}}원</span></div>
             </div>
             <div class="selected_quantity">
@@ -39,6 +39,14 @@ export default {
         }
     },
     computed:{
+        selectShaveColorName(){
+            let colorName = ['미드나이트 네이비','사파이어 블루', '슬레이트 그레이'];
+            return colorName[this.$store.state.shave_color-1];
+        },
+        selectShaveColorClass(){
+            let colorClass = ['navy','blue','gray'];
+            return colorClass[this.$store.state.shave_color-1]
+        }
     },
     methods: {
         removeItem(item){
