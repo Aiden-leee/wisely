@@ -14,6 +14,24 @@ export default {
   components: {
     ShaveModal,
   },
+  created(){
+      let cart = JSON.parse(localStorage.getItem('cart'));
+      if( cart !== null){
+        this.$store.commit("loadCart", cart)
+      }
+      // 총 금액
+      let price = 0;
+      this.$store.state.cart.forEach(item=>{
+          price += item.price * item.quantity;
+      })
+      this.$store.commit('totalPrice', price)
+      // 총 개수
+      let count = 0;
+      this.$store.state.cart.forEach(item=>{
+          count += item.quantity
+      })
+      this.$store.commit("totalCount", count)
+  },
   computed: {
     isModal(){
       return this.$store.state.shave_modal

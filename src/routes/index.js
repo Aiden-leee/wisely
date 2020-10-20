@@ -8,11 +8,11 @@ const router = new VueRouter({
     routes: [
         { 
             path: '/',
-            component: ()=> import('@/components/Cart.vue')
+            component: ()=> import('@/components/cart/Cart.vue')
         },
         {
             path: '/phase_cycle',
-            component: ()=> import('@/components/Cycle.vue')
+            component: ()=> import('@/components/cycle/Cycle.vue')
         },
         {
             path: "*",

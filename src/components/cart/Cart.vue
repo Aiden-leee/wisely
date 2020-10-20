@@ -54,6 +54,7 @@ export default {
         return {
         }
     },
+   
     computed: {
         // 카트 목록
         getCartList(){
@@ -80,11 +81,9 @@ export default {
             })
             this.$store.commit("totalCount", count)
             return count
-
         }
     },
     mounted(){
-        
     }
     
 }

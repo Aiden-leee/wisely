@@ -2,7 +2,9 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 
 Vue.use(Vuex);
-
+const storageFunc = (state)=>{
+    localStorage.setItem('cart', JSON.stringify(state.cart))
+}
 const store = new Vuex.Store({
     state: {
         total_count: 0,
@@ -47,17 +49,28 @@ const store = new Vuex.Store({
         ]
     },
     getters: {
+        cart(state){
+            return state.cart;
+        }
     },
     mutations: {
+        loadCart(state, cartItem){
+            state.cart = cartItem;
+            state.cart.forEach(tem=>{
+                store.commit("updateItems", tem)
+            })
+        },
         // 카트 상품 추가
         addCart(state, cartItem){
             state.cart.push(cartItem);
+            storageFunc(state);
         },
         // 카트상품 목록 삭제
         removeCart(state, cartItem){
             state.cart = state.cart.filter(item=>{
                 return item.id !== cartItem.id
             })
+            storageFunc(state);
         },
         // 카트 상품 목록 기존 목록으로 돌아가기 
         revertItem(state, cartItem){
@@ -79,6 +92,7 @@ const store = new Vuex.Store({
                     tem.quantity = count
                 }
             })
+            storageFunc(state);
         },
         // 카트 상품 수량 감소
         minusQuantity(state, [cartItem, count]){
@@ -87,6 +101,7 @@ const store = new Vuex.Store({
                     tem.quantity = count
                 }
             })
+            storageFunc(state);
         },
         getColor(state, color){
             state.shave_color = color;
@@ -94,10 +109,12 @@ const store = new Vuex.Store({
         // 총 가격
         totalPrice(state, price){
             state.total_price = price;
+            storageFunc(state);
         },
         // 총 카트 개수
         totalCount(state, count){
-            state.total_count = count
+            state.total_count = count;
+            storageFunc(state);
         },
         // 모달 팝업 상태값 
         shave_modal(state, [payload, shave]){
@@ -110,6 +127,7 @@ const store = new Vuex.Store({
                 store.commit('updateItems', result)
             }
             state.shave_modal = payload;
+            storageFunc(state);
 
         }
     }

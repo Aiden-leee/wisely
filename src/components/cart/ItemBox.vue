@@ -21,6 +21,10 @@
 
 export default {
     name: "ItemBox",
+    data(){
+        return {
+        }
+    },
     props: {
         item: {
             type: Object,
@@ -29,7 +33,7 @@ export default {
     },
     methods: {
         addCartItem(item){
-            if( !item.isModal){
+            if(!item.isModal){
                 this.$store.commit("addCart", item)
                 this.$store.commit("updateItems", item)
             }else {

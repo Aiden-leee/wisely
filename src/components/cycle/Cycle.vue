@@ -13,14 +13,16 @@
         </div>
         <div class="cycle_content">
             <div class="cycle_title">배송 주기를 선택해주세요</div>
-            <div class="cycle_list">
-                <div class="item_cycle">
-
-                </div>
+            <div class="cycle_lists">
+                <template v-for="option in cartOption">
+                    <CycleItem :key="option.id" :option="option" />
+                </template>
+                <!-- <CycleItem />
+                <CycleItem /> -->
             </div>
             <div class="cycle_info_bottom">
                 <div class="next_step_btn">
-                    <button></button>
+                    <button>다음</button>
                 </div>
             </div>
         </div>
@@ -28,24 +30,29 @@
 </template>
 
 <script>
+import CycleItem from './CycleItem.vue';
 export default {
     name: "Cycle",
+    components:{
+        CycleItem
+    },
     data(){
         return {
-            currentCartActive: false, 
+            currentCartActive: false,
+            cartOption: this.$store.state.cart
         }
     },
     computed: {
         isTotalCount(){
-            console.log( this.$store.state.total_count >= 1 ? this.$store.state.total_count : "" )
             return this.$store.state.total_count >= 1 ? this.$store.state.total_count : ""; 
-        }
+        },
     },
     methods: {
-        currentViewCart(e){
+        currentViewCart(){
             this.$store.state.total_count === 0 ? this.$router.push("/") : '';
             this.currentCartActive = !this.currentCartActive; 
-        }
+        },
+      
     }
 }
 </script>
