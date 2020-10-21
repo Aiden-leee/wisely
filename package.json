@@ -10,7 +10,9 @@
   "dependencies": {
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
+    "vue-fragment": "^1.5.1",
     "vue-router": "^3.4.7",
+    "vuejs-datepicker": "^1.6.2",
     "vuex": "^3.5.1"
   },
   "devDependencies": {

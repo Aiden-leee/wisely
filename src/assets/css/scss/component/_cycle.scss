@@ -1,234 +1,267 @@
 .cycle {
-    width: 100%;
-    height: 100%;
-    .cart_header {
-        position: relative;
+  width: 100%;
+  height: 100%;
+  .cart_header {
+    position: relative;
+    &:after {
+      content: "";
+      clear: both;
+      display: block;
+    }
+    > .left {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    > .right {
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      .current_cart {
+        display: table;
+        cursor: pointer;
         &:after {
+          content: "";
+          clear: both;
+          display: block;
+        }
+        > div {
+          display: table-cell;
+          vertical-align: middle;
+          &.cart_icon {
+            width: 50px;
+            height: 30px;
+            background: url("~@/assets/img/cart_off.svg") no-repeat -2px;
+            &.hasItem {
+              background: url("~@/assets/img/cart_on.svg") no-repeat -2px;
+            }
+            .count {
+              display: inline-block;
+              color: #ffc01e;
+              margin-top: -5px;
+              vertical-align: top;
+              font-size: 10px;
+              letter-spacing: -0.04em;
+            }
+          }
+          &.current_price {
+            > span {
+              position: relative;
+              display: inline-block;
+              padding-right: 20px;
+              font-size: 16px;
+              font-weight: 400;
+              &:after {
+                content: "";
+                position: absolute;
+                right: 0;
+                top: 0;
+                width: 20px;
+                height: 20px;
+                background: url("~@/assets/img/arrow.svg") no-repeat center;
+              }
+            }
+            &.active {
+              > span {
+                &:after {
+                  transform: rotate(180deg);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .cycle_content {
+    padding: 0 16px;
+    height: calc(100% - 250px);
+    .cycle_title {
+      padding: 26px 0 24px;
+      font-size: 24px;
+      text-align: left;
+      font-weight: 300;
+      letter-spacing: -0.06em;
+      color: #1e314a;
+    }
+    .cycle_lists {
+      height: calc(100% - 74px);
+      overflow-y: auto;
+      .item_cycle {
+        margin-bottom: 10px;
+        max-height: 60px;
+        overflow: hidden;
+        transition: max-height 0.5s ease-in-out;
+        &.active {
+          max-height: 100%;
+          .wrap {
+            &:before {
+              transform: translateY(-50%) rotate(180deg);
+            }
+          }
+          .cycle_wrap {
+            opacity: 1;
+          }
+        }
+        .wrap {
+          position: relative;
+          padding: 20px 41px 20px 18px;
+          background: #f8f8f8;
+          height: 60px;
+          line-height: 100%;
+          border-radius: 4px;
+          box-sizing: border-box;
+          cursor: pointer;
+          &:before {
+            content: "";
+            width: 15px;
+            height: 10px;
+            display: block;
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: url("~@/assets/img/cycle_arrow.svg") no-repeat center;
+          }
+          &:after {
             content: "";
             clear: both;
             display: block;
-        }
-        .left {
-            position: absolute;
-            left: 16px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-        .right {
-            position: absolute;
-            right: 16px;
-            top: 50%;
-            transform: translateY(-50%);
-            .currentCart {
-                display: table;
-                cursor: pointer;
-                &:after {
-                    content: "";
-                    clear: both;
-                    display: block;
-                }
-                > div {
-                    display: table-cell;
-                    vertical-align: middle;
-                    &.cart_icon {
-                        width: 50px;
-                        height: 30px;
-                        background: url('~@/assets/img/cart_off.svg') no-repeat -2px;
-                        &.hasItem {
-                            background: url('~@/assets/img/cart_on.svg') no-repeat -2px;
-                        }
-                        .count {
-                            display: inline-block;
-                            color: #ffc01e;
-                            margin-top: -5px;
-                            vertical-align: top;
-                            font-size: 10px;
-                            letter-spacing: -.04em;
-                        }
-                    }
-                    &.currentPrice {
-                        > span {
-                            position: relative;
-                            display: inline-block;
-                            padding-right: 20px;
-                            font-size: 16px;
-                            font-weight: 400;
-                            &:after {
-                                content: "";
-                                position: absolute;
-                                right:0;
-                                top: 0;
-                                width: 20px;
-                                height: 20px;
-                                background: url('~@/assets/img/arrow.svg') no-repeat center;
-                            }
-                        }
-                        &.active {
-                            > span {
-                                &:after {
-                                    transform: rotate(180deg);
-                                }
-                            }
-                        }
-                    }
-                }
+          }
+          > .item_title {
+            float: left;
+            color: #5f5f5f;
+            font-size: 14px;
+          }
+          > .info {
+            float: right;
+            .selected {
+              display: inline-block;
+              font-size: 16px;
+              color: #0f5783;
+              font-weight: 400;
             }
+            .best {
+              display: inline-block;
+              width: 48px;
+              height: 18px;
+              font-size: 12px;
+              color: #fcfcfc;
+              margin-right: 10px;
+              vertical-align: top;
+              letter-spacing: -0.025em;
+              background: #0f5783;
+              border-radius: 2px;
+            }
+          }
         }
+        .cycle_wrap {
+          margin-top: 10px;
+          box-sizing: border-box;
+          border-radius: 4px;
+          opacity: 0;
+          transition: opacity 0.5s ease-in-out;
+          .box {
+            height: 60px;
+            padding: 15px 30px;
+            margin-bottom: 10px;
+            border: 1px solid #ebebeb;
+            box-sizing: border-box;
+            border-radius: 4px;
+            cursor: pointer;
+            &:last-child {
+              margin-bottom: 0;
+            }
+            &.selected {
+              border: 1px solid #0055b8;
+            }
+            &:after {
+              content: "";
+              clear: both;
+              display: block;
+            }
+            > .cycle_icon {
+              float: left;
+            }
+            > .cycle_name {
+              float: right;
+              display: table;
+              height: 100%;
+              > span {
+                display: table-cell;
+                vertical-align: middle;
+                color: #0f5783;
+                font-weight: 400;
+                letter-spacing: -0.06em;
+              }
+            }
+          }
+        }
+      }
     }
-    .cycle_content {
-        padding: 0 16px;
-        height: calc(100% - 215px);
-        overflow-y: auto;
-        .cycle_title {
-            padding: 26px 0 24px;
-            font-size: 24px;
-            text-align: left;
-            font-weight: 300;
-            letter-spacing: -0.06em;
-            color: #1E314A;
+    .cycle_info_bottom {
+      width: 100%;
+      min-width: 360px;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      .next_step_btn {
+        padding: 20px 16px 40px;
+        button {
+          width: 100%;
+          padding: 13px 0;
+          border: 0;
+          color: #fff;
+          background: #0055b8;
+          cursor: pointer;
+          font-size: 18px;
+          font-weight: 400;
+          box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+          border-radius: 4px;
         }
-        .cycle_lists {
-            height: calc(100% - 74px);
-            overflow-y: auto;
-            .item_cycle {
-                margin-bottom: 10px;
-                max-height: 60px;
-                overflow: hidden;
-                transition: max-height .4s ease-in-out;
-                &.active {
-                    max-height: 100%;
-                    .wrap {
-                        &:before {
-                            transform: translateY(-50%) rotate(180deg);
-                        }
-                    }
-                    .cycle_wrap {
-                        opacity: 1;
-                    }
-                }
-                .wrap {
-                    position: relative;
-                    padding: 20px 41px 20px 18px;
-                    background: #f8f8f8;
-                    height: 60px;
-                    line-height: 100%;
-                    border-radius: 4px;
-                    box-sizing: border-box;
-                    cursor: pointer;
-                    &:before {
-                        content: "";
-                        width: 15px;
-                        height: 10px;
-                        display: block;
-                        position: absolute;
-                        right: 20px;
-                        top: 50%;
-                        transform: translateY(-50%);
-                        background: url('~@/assets/img/cycle_arrow.svg') no-repeat center;
-                    }
-                    &:after {
-                        content: "";
-                        clear: both;
-                        display: block;
-                    }
-                    > .item_title {
-                        float: left;
-                        color: #5f5f5f;
-                        font-size: 14px;
-                    }
-                    > .info {
-                        float: right;
-                        .selected {
-                            display: inline-block;
-                            font-size: 16px;
-                            color: #0F5783;
-                            font-weight: 400;
-                        }
-                        .best {
-                            display: inline-block;
-                            width: 48px;
-                            height: 18px;
-                            font-size: 12px;
-                            color: #fcfcfc;
-                            margin-right: 10px;
-                            vertical-align: top;
-                            letter-spacing: -0.025em;
-                            background: #0F5783;
-                            border-radius: 2px;
-                        }
-                    }
-                }
-                .cycle_wrap {
-                    margin-top: 10px;
-                    box-sizing: border-box;
-                    border-radius: 4px;
-                    opacity: 0;
-                    transition: opacity .5s ease-in-out;
-                    .box {
-                        height: 60px;
-                        padding: 15px 30px;
-                        margin-bottom: 10px;
-                        border: 1px solid #EBEBEB;
-                        box-sizing: border-box;
-                        border-radius: 4px;
-                        cursor: pointer;
-                        &:last-child {
-                            margin-bottom: 0;
-                        }
-                        &.selected {
-                            border: 1px solid #0055B8;
-                        }
-                        &:after {
-                            content: "";
-                            clear: both;
-                            display: block;
-                        }
-                        > .cycle_icon {
-                            float: left;
-                        }
-                        > .cycle_name {
-                            float: right;
-                            display: table;
-                            height: 100%;
-                            > span {
-                                display: table-cell;
-                                vertical-align: middle;
-                                color: #0F5783;
-                                font-weight: 400;
-                                letter-spacing: -0.06em;
-                            }
-                        }
-                    }
-                }
+      }
+      .expected {
+        padding: 22px 26px;
+        border-top: 1px solid #efefef;
+        > div {
+          width: 100%;
+          display: table;
+          margin-bottom: 6px;
+          &:last-child {
+            margin-bottom: 0;
+          }
+          > span {
+            display: inline-block;
+            display: table-cell;
+            vertical-align: middle;
+            .date {
+              font-size: 16px;
             }
-        }
-        .cycle_info_bottom {
-            width: 100%;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            .next_step_btn {
-                padding: 20px 16px 40px;
-                button {
-                    width: 100%;
-                    padding: 13px 0;
-                    border: 0;
-                    color: #fff;
-                    background: #0055B8;
-                    cursor: pointer;
-                    font-size: 18px;
-                    font-weight: 400;
-                    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
-                    border-radius: 4px;
-                }
+            &:first-child {
+              text-align: left;
+              font-size: 14px;
+              color: #979797;
+              font-weight: 300;
             }
+            &.next_date {
+              .date {
+                color: #0055b8;
+              }
+            }
+          }
         }
+      }
     }
+  }
 }
-.slide-enter-active, .slide-leave-active {
-    transition: transform .4s ease-in-out, opacity .4s;
+.slide-enter-active,
+.slide-leave-active {
+  transition: transform 0.4s ease-in-out, opacity 0.4s;
 }
-.slide-enter, .slide-leave-to  {
-    opacity: 0;
-    transform: translateX(100%);
+.slide-enter,
+.slide-leave-to {
+  opacity: 0;
+  transform: translateX(100%);
 }

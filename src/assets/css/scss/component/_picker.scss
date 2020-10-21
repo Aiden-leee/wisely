@@ -1,0 +1,140 @@
+.picker {
+  width: 100%;
+  min-width: 360px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding: 26px 16px 40px;
+  background: #fff;
+  //   height: 482px;
+  z-index: 99;
+  h3 {
+    font-size: 26px;
+    color: #1e314a;
+    font-weight: 300;
+    text-align: left;
+    letter-spacing: -0.06em;
+  }
+  .payment_add {
+    margin-top: 24px;
+    .payment {
+      width: 100%;
+      height: 48px;
+      border: 0;
+      font-size: 18px;
+      color: #fff;
+      background: #0055b8;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+      border-radius: 4px;
+      cursor: pointer;
+      &.disabled {
+        background: #cecece;
+        cursor: default;
+      }
+    }
+  }
+}
+.vdp-datepicker {
+  margin-top: 38px;
+}
+.date_pick {
+  width: 100% !important;
+  height: 320px !important;
+  max-width: 360px;
+  margin: 0 auto;
+  > div {
+    height: 100%;
+  }
+  .cell {
+    // height: 30px !important;
+    // line-height: 30px !important;
+    position: relative;
+    font-size: 14px;
+    color: #3a3a3a;
+    box-sizing: border-box;
+    &.disabled {
+      color: #ccc;
+    }
+    &.selected {
+      background: transparent !important;
+      //   background: none !important;
+      border-radius: 32px;
+      position: relative;
+      z-index: 1;
+      color: #fff;
+      &:before {
+        content: "";
+        width: 32px;
+        height: 32px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-top: 1px;
+        background: #0055b8;
+        color: #fff;
+        border-radius: 50%;
+        z-index: -1;
+        transform: translate(-50%, -50%);
+      }
+      &:after {
+        content: "";
+        width: 38px;
+        height: 38px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-top: 1px;
+        border: 1px solid #0055b8;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+  .cell:not(.blank):not(.disabled).day:hover,
+  .cell:not(.blank):not(.disabled).month:hover,
+  .cell:not(.blank):not(.disabled).year:hover {
+    border: 1px solid transparent !important;
+    &:after {
+      content: "";
+      width: 38px;
+      height: 38px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      margin-top: 1px;
+      border: 1px solid #0055b8;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+  header .prev:after,
+  header .next:after {
+    content: "";
+    width: 10px;
+    height: 14px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    border: 6px solid transparent;
+  }
+  header .prev:after {
+    border-right: 0 !important;
+    background: url("~@/assets/img/picker_arrow.svg") no-repeat center;
+  }
+  header .prev.disabled:after {
+    opacity: 0.4;
+    cursor: default;
+    border-right: 0 !important;
+  }
+  header .next:after {
+    background: url("~@/assets/img/picker_arrow_reverse.svg") no-repeat center;
+    border-left: 0 !important;
+    margin-left: 2px !important;
+  }
+  header .next.disabled:after {
+    opacity: 0.4;
+    cursor: default;
+    border-left: 0 !important;
+  }
+}
