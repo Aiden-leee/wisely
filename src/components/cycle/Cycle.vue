@@ -32,7 +32,7 @@
       </div>
       <div class="cycle_info_bottom">
         <div class="next_step_btn">
-          <button>다음</button>
+          <button @click="handlePicker">다음</button>
         </div>
         <div class="expected">
           <div class="next_date">
@@ -46,7 +46,7 @@
         </div>
       </div>
     </div>
-    <Picker />
+    <Picker :pick-open.sync="pickOpen" />
   </div>
 </template>
 
@@ -64,6 +64,7 @@ export default {
   data() {
     return {
       currentCartActive: false,
+      pickOpen: false,
       cartOption: this.$store.state.cart,
     };
   },
@@ -81,6 +82,9 @@ export default {
     currentViewCart() {
       this.$store.state.total_count === 0 ? this.$router.push("/") : "";
       this.currentCartActive = !this.currentCartActive;
+    },
+    handlePicker() {
+      this.pickOpen = true;
     },
   },
 };

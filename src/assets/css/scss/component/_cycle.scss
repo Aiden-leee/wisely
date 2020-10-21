@@ -114,6 +114,7 @@
           border-radius: 4px;
           box-sizing: border-box;
           cursor: pointer;
+          pointer-events: auto;
           &:before {
             content: "";
             width: 15px;

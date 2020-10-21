@@ -97,17 +97,18 @@ export default {
       if (
         !cycleItem.parentNode.childNodes[this.idx].classList.contains("active")
       ) {
+        console.log(1);
         this.initClass();
         cycleItem.parentNode.childNodes[this.idx].classList.add("active");
       } else {
+        console.log(2);
         this.initClass();
         cycleItem.parentNode.childNodes[this.idx].classList.remove("active");
       }
-      //   this.isActive = !this.isActive;
     },
     initClass() {
-      let cycleItem = document.querySelector(".item_cycle");
-      cycleItem.parentNode.childNodes.forEach((tem) => {
+      let cycleItem = document.querySelectorAll(".item_cycle");
+      cycleItem.forEach((tem) => {
         tem.classList.remove("active");
       });
     },
@@ -120,8 +121,8 @@ export default {
       this.cycles.forEach((item) => {
         if (item.id === tg.id) {
           item.active = true;
-          let cycleItem = document.querySelector(".item_cycle");
-          cycleItem.parentNode.childNodes.forEach((tem) => {
+          let cycleItem = document.querySelectorAll(".item_cycle");
+          cycleItem.forEach((tem) => {
             tem.classList.remove("active");
           });
           this.selected_cycle = {
