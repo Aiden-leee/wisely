@@ -1,24 +1,28 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router'
+import Vue from "vue";
+import VueRouter from "vue-router";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const router = new VueRouter({
-    mode: 'history',
-    routes: [
-        { 
-            path: '/',
-            component: ()=> import('@/components/cart/Cart.vue')
-        },
-        {
-            path: '/phase_cycle',
-            component: ()=> import('@/components/cycle/Cycle.vue')
-        },
-        {
-            path: "*",
-            component: ()=> import("@/components/NotFound.vue")
-        }
-    ]
-})
+  mode: "history",
+  routes: [
+    {
+      path: "/",
+      component: () => import("@/components/cart/Cart.vue"),
+    },
+    {
+      path: "/phase_cycle",
+      component: () => import("@/components/cycle/Cycle.vue"),
+    },
+    {
+      path: "/order",
+      component: () => import("@/components/order/Order.vue"),
+    },
+    {
+      path: "*",
+      component: () => import("@/components/NotFound.vue"),
+    },
+  ],
+});
 
 export default router;

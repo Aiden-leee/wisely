@@ -37,11 +37,11 @@
         <div class="expected">
           <div class="next_date">
             <span>다음 결제 예정일</span>
-            <span class="date">12월 31일 월요일</span>
+            <span class="date">{{ nextPay }}</span>
           </div>
           <div class="after_date">
             <span>이후 결제 예정일</span>
-            <span class="date">3월 31일 수요일</span>
+            <span class="date">{{ afterPay }}</span>
           </div>
         </div>
       </div>
@@ -54,6 +54,16 @@
 import CycleItem from "./CycleItem.vue";
 import CartConfirm from "./CartConfirm.vue";
 import Picker from "../datepicker/Picker.vue";
+
+const week = new Array(
+  "일요일",
+  "월요일",
+  "화요일",
+  "수요일",
+  "목요일",
+  "금요일",
+  "토요일"
+);
 export default {
   name: "Cycle",
   components: {
@@ -68,14 +78,30 @@ export default {
       cartOption: this.$store.state.cart,
     };
   },
-  created() {
-    // this.$store.commit("initOption")
-  },
+  created() {},
   computed: {
     isTotalCount() {
       return this.$store.state.total_count >= 1
         ? this.$store.state.total_count
         : "";
+    },
+    nextPay() {
+      let result;
+      let date = new Date();
+      date.setDate(date.getDate() + 1);
+      result = `${date.getMonth() + 1}월 ${date.getDate()}일 ${
+        week[date.getDay()]
+      }`;
+      return result;
+    },
+    afterPay() {
+      let result;
+      let date = new Date();
+      date.setMonth(date.getMonth() + this.$store.state.currentWeek / 4);
+      result = `${date.getMonth() + 1}월 ${date.getDate()}일 ${
+        week[date.getDay()]
+      }`;
+      return result;
     },
   },
   methods: {

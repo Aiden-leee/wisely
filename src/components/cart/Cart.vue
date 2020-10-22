@@ -1,17 +1,20 @@
 <template>
   <div class="cart">
     <div class="cart_header">
-      <img src="@/assets/img/logo.svg" alt="wisely" />
+      <img src="~@/assets/img/logo.svg" alt="wisely" />
     </div>
     <div class="cart_content">
       <div class="cart_list">
         <p v-if="getCartList.length === 0">
           장바구니가 비어있습니다<br />상품을 추가해주세요
         </p>
-        <div class="wrap" v-else>
+        <transition-group name="slideIn" tag="div" mode="out-in">
           <template v-for="item in getCartList">
+            {{ item }}
             <CartItem :item="item" :key="item.id" />
           </template>
+        </transition-group>
+        <div class="wrap" v-if="getCartList.length !== 0">
           <div class="selected_info">
             <div class="selected_price">
               <div class="delivery_price">

@@ -57,12 +57,11 @@
   height: 320px !important;
   max-width: 360px;
   margin: 0 auto;
+  border: 0 !important;
   > div {
     height: 100%;
   }
   .cell {
-    // height: 30px !important;
-    // line-height: 30px !important;
     position: relative;
     font-size: 14px;
     color: #3a3a3a;

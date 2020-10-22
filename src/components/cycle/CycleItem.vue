@@ -10,7 +10,7 @@
       </div>
     </div>
     <div class="cycle_wrap" @click="bubbleGuard">
-      <template v-for="cycle in cycles">
+      <template v-for="cycle in getCycles">
         <div
           class="box"
           :key="cycle.id"
@@ -49,6 +49,7 @@ export default {
       cycles: [
         {
           id: 1,
+          week: 4,
           name: "4주에 한번",
           img: require("@/assets/img/cycle_manytime_off.svg"),
           img_on: require("@/assets/img/cycle_manytime_on.svg"),
@@ -56,6 +57,7 @@ export default {
         },
         {
           id: 2,
+          week: 8,
           name: "8주에 한번",
           img: require("@/assets/img/cycle_day_off.svg"),
           img_on: require("@/assets/img/cycle_day_on.svg"),
@@ -64,13 +66,7 @@ export default {
         },
         {
           id: 3,
-          name: "12주에 한번",
-          img: require("@/assets/img/cycle_threeday_off.svg"),
-          img_on: require("@/assets/img/cycle_threeday_on.svg"),
-          active: false,
-        },
-        {
-          id: 4,
+          week: 16,
           name: "16주에 한번",
           img: require("@/assets/img/cycle_threeday_off.svg"),
           img_on: require("@/assets/img/cycle_threeday_on.svg"),
@@ -80,16 +76,57 @@ export default {
     };
   },
   created() {
-    this.cycles.forEach((item) => {
-      if (item.active) {
-        this.selected_cycle = {
-          option_id: item.id,
-          name: item.name,
-          best: item.best ? true : false,
-        };
-        this.$store.commit("addOption", [this.selected_cycle, this.option]);
+    if (this.option.id == 2) {
+      this.getCycles.forEach((item) => {
+        if (item.active) {
+          this.selected_cycle = {
+            name: item.name,
+            week: item.week,
+            best: item.best ? true : false,
+          };
+          this.$store.commit("changeWeek", item.week);
+          this.$store.commit("addOption", [this.selected_cycle, this.option]);
+        }
+      });
+    } else {
+      this.getCycles.forEach((item, idx) => {
+        if (idx === 0) {
+          item.active = true;
+          this.selected_cycle = {
+            name: item.name,
+            week: item.week,
+            best: item.best ? true : false,
+          };
+        } else {
+          item.active = false;
+        }
+      });
+    }
+  },
+  computed: {
+    getCycles() {
+      let result;
+      if (this.option.id === 2) {
+        result = this.cycles;
+      } else {
+        result = this.cycles.filter((item) => {
+          return item.week >= this.$store.state.currentWeek;
+        });
+        result.forEach((item, idx) => {
+          if (idx === 0) {
+            item.active = true;
+            this.selected_cycle = {
+              name: item.name,
+              week: item.week,
+              best: item.best ? true : false,
+            };
+          } else {
+            item.active = false;
+          }
+        });
       }
-    });
+      return result;
+    },
   },
   methods: {
     toggleCycleList() {
@@ -97,11 +134,9 @@ export default {
       if (
         !cycleItem.parentNode.childNodes[this.idx].classList.contains("active")
       ) {
-        console.log(1);
         this.initClass();
         cycleItem.parentNode.childNodes[this.idx].classList.add("active");
       } else {
-        console.log(2);
         this.initClass();
         cycleItem.parentNode.childNodes[this.idx].classList.remove("active");
       }
@@ -117,24 +152,44 @@ export default {
     },
     selected(tg) {
       this.selected_cycle = {};
-      this.option.option = {};
-      this.cycles.forEach((item) => {
-        if (item.id === tg.id) {
-          item.active = true;
-          let cycleItem = document.querySelectorAll(".item_cycle");
-          cycleItem.forEach((tem) => {
-            tem.classList.remove("active");
-          });
-          this.selected_cycle = {
-            option_id: tg.id,
-            name: item.name,
-            best: item.best ? true : false,
-          };
-        } else {
+      // 리필면도기일 경우
+      if (this.option.id === 2) {
+        this.getCycles.forEach((item) => {
+          if (item.id === tg.id) {
+            this.selectedLogic(item);
+            this.$store.commit("changeWeek", item.week);
+          } else {
+            item.active = false;
+          }
+        });
+        this.$store.commit("addOption", [this.selected_cycle, this.option]);
+      } else {
+        //그외 아이템 주기
+        this.getCycles.forEach((item) => {
           item.active = false;
-        }
+        });
+        this.getCycles.forEach((item) => {
+          if (item.id === tg.id) {
+            console.log(item);
+            this.selectedLogic(item);
+          } else {
+            item.active = false;
+          }
+        });
+      }
+    },
+    // cycle 목록 활성화 및 selected object
+    selectedLogic(item) {
+      item.active = true;
+      let cycleItem = document.querySelectorAll(".item_cycle");
+      cycleItem.forEach((tem) => {
+        tem.classList.remove("active");
       });
-      this.$store.commit("addOption", [this.selected_cycle, this.option]);
+      this.selected_cycle = {
+        name: item.name,
+        week: item.week,
+        best: item.best ? true : false,
+      };
     },
   },
 };

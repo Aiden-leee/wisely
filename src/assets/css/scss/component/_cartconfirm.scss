@@ -25,6 +25,9 @@
       height: 118px;
       box-sizing: border-box;
       //   transition: max-height 0.4s, transform 0.4s ease-in-out;
+      &:last-child {
+        border-bottom: 0;
+      }
       &:after {
         content: "";
         clear: both;
@@ -168,6 +171,7 @@
   .total_view {
     padding: 26px;
     background: #fff;
+    border-top: 1px solid #efefef;
     .info {
       width: 100%;
       display: table;

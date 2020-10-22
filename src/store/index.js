@@ -2,17 +2,19 @@ import Vue from "vue";
 import Vuex from "vuex";
 
 Vue.use(Vuex);
+const CART = "cart";
 const storageFunc = (state) => {
-  localStorage.setItem("cart", JSON.stringify(state.cart));
+  localStorage.setItem(CART, JSON.stringify(state.cart));
 };
 const store = new Vuex.Store({
   state: {
-    total_count: 0,
-    total_price: 0,
-    cart: [],
-    shave_modal: false,
+    total_count: 0, // 총 개수
+    total_price: 0, // 총 가격
+    cart: [], // 장바구니
+    shave_modal: false, // 면도기 모달 상태값
     shave_color: 1, // 1: navy, 2: blue, 3: gray
-    itemOptions: [],
+    currentWeek: 8, // 리필면도기 기준 주기
+    deliveryDate: null,
     items: [
       {
         id: 1,
@@ -112,6 +114,11 @@ const store = new Vuex.Store({
       });
       storageFunc(state);
     },
+    // 주기 변경
+    changeWeek(state, week) {
+      state.currentWeek = week;
+    },
+    // cycle option 추가
     addOption(state, [cycle, tg]) {
       state.cart.forEach((tem) => {
         if (tem.id === tg.id) {
@@ -121,6 +128,7 @@ const store = new Vuex.Store({
       });
       storageFunc(state);
     },
+    // 면도기 색상
     getColor(state, color) {
       state.shave_color = color;
     },
@@ -133,6 +141,9 @@ const store = new Vuex.Store({
     totalCount(state, count) {
       state.total_count = count;
       storageFunc(state);
+    },
+    deliveryDate(state, day) {
+      state.deliveryDate = day;
     },
     // 모달 팝업 상태값
     shave_modal(state, [payload, shave]) {

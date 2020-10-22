@@ -237,6 +237,7 @@
             display: inline-block;
             display: table-cell;
             vertical-align: middle;
+            text-align: right;
             .date {
               font-size: 16px;
             }
@@ -246,10 +247,10 @@
               color: #979797;
               font-weight: 300;
             }
-            &.next_date {
-              .date {
-                color: #0055b8;
-              }
+          }
+          &.next_date {
+            .date {
+              color: #0055b8;
             }
           }
         }
@@ -265,4 +266,13 @@
 .slide-leave-to {
   opacity: 0;
   transform: translateX(100%);
+}
+.slideIn-enter-active,
+.slideIn-leave-active {
+  transition: transform 0.4s ease-in-out, opacity 0.4s;
+}
+.slideIn-enter,
+.slideIn-leave-to {
+  opacity: 0;
+  transform: translateY(100%);
 }

@@ -19,7 +19,7 @@
           tag="button"
           class="payment"
           :class="[!on ? 'disabled' : '']"
-          to="/phase_cycle"
+          to="/order"
         ></router-link>
       </div>
     </div>
@@ -61,6 +61,7 @@ export default {
     this.disabledDates.from = getDate;
   },
   computed: {
+    // 선택 날짜 출력
     getPayDate() {
       let result;
       if (this.paymentDate) {
@@ -72,6 +73,7 @@ export default {
     },
   },
   methods: {
+    // 선택한 날짜
     getDay(date) {
       this.on = true;
       let result = new Date(date);
@@ -85,6 +87,7 @@ export default {
         day,
       };
       this.paymentDate = result_day;
+      this.$store.commit("deliveryDate", result_day);
     },
     closeOverlay() {
       this.$emit("update:pick-open", false);
