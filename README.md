@@ -1,2 +1,0 @@
-# wisely
-wisely cart
