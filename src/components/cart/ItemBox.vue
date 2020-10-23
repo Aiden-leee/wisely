@@ -35,11 +35,13 @@ export default {
       required: true,
     },
   },
+  computed: {},
   methods: {
     addCartItem(item) {
       if (!item.isModal) {
         this.$store.commit("addCart", item);
         this.$store.commit("updateItems", item);
+        this.$store.commit("totalCount");
       } else {
         this.$store.commit("shave_modal", [true]);
       }

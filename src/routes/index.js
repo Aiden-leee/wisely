@@ -4,10 +4,14 @@ import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
 const router = new VueRouter({
-  mode: "history",
+  mode: "hash",
   routes: [
     {
       path: "/",
+      redirect: "/cart",
+    },
+    {
+      path: "/cart",
       component: () => import("@/components/cart/Cart.vue"),
     },
     {

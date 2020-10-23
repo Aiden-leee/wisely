@@ -138,7 +138,11 @@ const store = new Vuex.Store({
       storageFunc(state);
     },
     // 총 카트 개수
-    totalCount(state, count) {
+    totalCount(state) {
+      let count = 0;
+      state.cart.forEach((item) => {
+        count += item.quantity;
+      });
       state.total_count = count;
       storageFunc(state);
     },
@@ -154,6 +158,7 @@ const store = new Vuex.Store({
         });
         store.commit("addCart", result);
         store.commit("updateItems", result);
+        store.commit("totalCount");
       }
       state.shave_modal = payload;
       storageFunc(state);

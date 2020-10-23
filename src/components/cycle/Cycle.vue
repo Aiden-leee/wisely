@@ -11,7 +11,7 @@
           </div>
           <div class="current_price" :class="{ active: currentCartActive }">
             <span v-if="this.$store.state.total_price !== 0"
-              >₩{{ this.$store.state.total_price }}</span
+              >₩{{ this.$store.state.total_price.toLocaleString() }}</span
             >
           </div>
         </div>

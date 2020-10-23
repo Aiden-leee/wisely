@@ -89,7 +89,7 @@ export default {
       this.$store.state.cart.forEach((item) => {
         count += item.quantity;
       });
-      this.$store.commit("totalCount", count);
+      this.$store.commit("totalCount");
       return count;
     },
   },
