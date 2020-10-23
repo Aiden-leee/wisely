@@ -1,3 +1,3 @@
 # wisely-cart
 
-[view](https://aiden-leee.github.io/wisely-cart/#/).
+[view](https://aiden-leee.github.io/wisely-cart/#/){:target="_blank"}
