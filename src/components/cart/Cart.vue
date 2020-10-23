@@ -93,7 +93,6 @@ export default {
       return count;
     },
   },
-  mounted() {},
 };
 </script>
 

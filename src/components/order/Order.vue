@@ -63,9 +63,11 @@ export default {
     return {};
   },
   computed: {
+    // 카트 목록
     cart() {
       return this.$store.state.cart;
     },
+    // 배달 날짜
     deilveryDay() {
       let result;
       if (this.$store.state.deliveryDate) {
@@ -73,14 +75,17 @@ export default {
       }
       return result;
     },
+    // 면도기 색상 이름
     selectShaveColorName() {
       let colorName = ["미드나이트 네이비", "사파이어 블루", "슬레이트 그레이"];
       return colorName[this.$store.state.shave_color - 1];
     },
+    // 면도기 색상 클래스
     selectShaveColorClass() {
       let colorClass = ["navy", "blue", "gray"];
       return colorClass[this.$store.state.shave_color - 1];
     },
+    // 총 가격
     getTotalPrice() {
       return this.$store.getters.total_price;
     },

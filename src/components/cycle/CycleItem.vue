@@ -76,6 +76,7 @@ export default {
     };
   },
   created() {
+    // 초기 면도기 일 경우에 주기 선택
     if (this.option.id == 2) {
       this.getCycles.forEach((item) => {
         if (item.active) {
@@ -89,6 +90,7 @@ export default {
         }
       });
     } else {
+      // 초기 면도기 외의 아이템 주기 선택
       this.getCycles.forEach((item, idx) => {
         if (idx === 0) {
           item.active = true;
@@ -104,6 +106,7 @@ export default {
     }
   },
   computed: {
+    // 주기
     getCycles() {
       let result;
       if (this.option.id === 2) {
@@ -129,6 +132,7 @@ export default {
     },
   },
   methods: {
+    // 주기 선택시 active 활성화
     toggleCycleList() {
       let cycleItem = document.querySelector(".item_cycle");
       if (
@@ -141,15 +145,18 @@ export default {
         cycleItem.parentNode.childNodes[this.idx].classList.remove("active");
       }
     },
+    // 주기선택 활성화 전부 지우기
     initClass() {
       let cycleItem = document.querySelectorAll(".item_cycle");
       cycleItem.forEach((tem) => {
         tem.classList.remove("active");
       });
     },
+    // 이벤트 버블링 방지
     bubbleGuard(e) {
       e.stopPropagation();
     },
+    // 주기 선택
     selected(tg) {
       this.selected_cycle = {};
       // 리필면도기일 경우

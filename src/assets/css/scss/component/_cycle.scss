@@ -140,6 +140,7 @@
             float: right;
             .selected {
               display: inline-block;
+              min-width: 100px;
               font-size: 16px;
               color: #0f5783;
               font-weight: 400;

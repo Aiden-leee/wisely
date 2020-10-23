@@ -600,6 +600,7 @@ input:active {
 
 .cycle .cycle_content .cycle_lists .item_cycle .wrap > .info .selected {
   display: inline-block;
+  min-width: 100px;
   font-size: 16px;
   color: #0f5783;
   font-weight: 400;

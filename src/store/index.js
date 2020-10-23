@@ -14,7 +14,7 @@ const store = new Vuex.Store({
     shave_modal: false, // 면도기 모달 상태값
     shave_color: 1, // 1: navy, 2: blue, 3: gray
     currentWeek: 8, // 리필면도기 기준 주기
-    deliveryDate: null,
+    deliveryDate: null, // 배송날짜
     items: [
       {
         id: 1,

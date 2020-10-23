@@ -78,13 +78,14 @@ export default {
       cartOption: this.$store.state.cart,
     };
   },
-  created() {},
   computed: {
+    // 총 개수
     isTotalCount() {
       return this.$store.state.total_count >= 1
         ? this.$store.state.total_count
         : "";
     },
+    // 다음 결제일
     nextPay() {
       let result;
       let date = new Date();
@@ -94,6 +95,7 @@ export default {
       }`;
       return result;
     },
+    // 이후 결제일
     afterPay() {
       let result;
       let date = new Date();
@@ -105,10 +107,12 @@ export default {
     },
   },
   methods: {
+    // 현재 카트 아이템 목록 모달창
     currentViewCart() {
       this.$store.state.total_count === 0 ? this.$router.push("/") : "";
       this.currentCartActive = !this.currentCartActive;
     },
+    // 달력 모달 열기
     handlePicker() {
       this.pickOpen = true;
     },

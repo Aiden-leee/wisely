@@ -55,6 +55,7 @@ export default {
     };
   },
   created() {
+    // 날짜 최대 6개월까지 선택
     let getDate = new Date();
     getDate.setMonth(getDate.getMonth() + 6);
     this.disabledDates.to = new Date();

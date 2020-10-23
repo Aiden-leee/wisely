@@ -37,12 +37,14 @@ export default {
   },
   computed: {},
   methods: {
+    // 카트 아이템 추가하기
     addCartItem(item) {
       if (!item.isModal) {
         this.$store.commit("addCart", item);
         this.$store.commit("updateItems", item);
         this.$store.commit("totalCount");
       } else {
+        // 면도기 모달 창
         this.$store.commit("shave_modal", [true]);
       }
     },
