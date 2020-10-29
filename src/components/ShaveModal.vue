@@ -1,7 +1,15 @@
 <template>
   <div class="shave_modal" @click="closeOverlay">
     <div class="wrap">
-      <div class="box" @click="bubbleGuard" :class="{ active: modalState }">
+      <div
+        class="box"
+        @click.stop="
+          () => {
+            return;
+          }
+        "
+        :class="{ active: modalState }"
+      >
         <div class="h_title">
           면도기 색상을 선택해 주세요
         </div>
@@ -93,22 +101,18 @@ export default {
     },
     // modal status (boolean)
     modalState() {
-      return this.$store.state.shave_modal;
+      return this.$store.state.shaveModal;
     },
   },
   methods: {
     selectAddColorCart(e) {
       e.stopPropagation();
       this.$store.commit("getColor", this.currentColor);
-      this.$store.commit("shave_modal", [false, true]);
+      this.$store.commit("isShaveModal", [false, true]);
     },
     // modal overlay close
     closeOverlay() {
-      this.$store.commit("shave_modal", [false]);
-    },
-    // child bubbling stop
-    bubbleGuard(e) {
-      e.stopPropagation();
+      this.$store.commit("isShaveModal", [false]);
     },
     // color select
     selectColor(current) {

@@ -9,7 +9,14 @@
         >
       </div>
     </div>
-    <div class="cycle_wrap" @click="bubbleGuard">
+    <div
+      class="cycle_wrap"
+      @click.stop="
+        () => {
+          return;
+        }
+      "
+    >
       <template v-for="cycle in getCycles">
         <div
           class="box"
@@ -152,10 +159,6 @@ export default {
         tem.classList.remove("active");
       });
     },
-    // 이벤트 버블링 방지
-    bubbleGuard(e) {
-      e.stopPropagation();
-    },
     // 주기 선택
     selected(tg) {
       this.selected_cycle = {};
@@ -177,7 +180,6 @@ export default {
         });
         this.getCycles.forEach((item) => {
           if (item.id === tg.id) {
-            console.log(item);
             this.selectedLogic(item);
           } else {
             item.active = false;

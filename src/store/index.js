@@ -8,11 +8,11 @@ const storageFunc = (state) => {
 };
 const store = new Vuex.Store({
   state: {
-    total_count: 0, // 총 개수
-    total_price: 0, // 총 가격
+    totalCount: 0, // 총 개수
+    totalPrice: 0, // 총 가격
     cart: [], // 장바구니
-    shave_modal: false, // 면도기 모달 상태값
-    shave_color: 1, // 1: navy, 2: blue, 3: gray
+    shaveModal: false, // 면도기 모달 상태값
+    shaveColor: 1, // 1: navy, 2: blue, 3: gray
     currentWeek: 8, // 리필면도기 기준 주기
     deliveryDate: null, // 배송날짜
     items: [
@@ -54,14 +54,6 @@ const store = new Vuex.Store({
         quantity: 1,
       },
     ],
-  },
-  getters: {
-    cart(state) {
-      return state.cart;
-    },
-    total_price(state) {
-      return state.total_price;
-    },
   },
   mutations: {
     // 초기 load 시 카트
@@ -130,27 +122,27 @@ const store = new Vuex.Store({
     },
     // 면도기 색상
     getColor(state, color) {
-      state.shave_color = color;
+      state.shaveColor = color;
     },
     // 총 가격
-    totalPrice(state, price) {
-      state.total_price = price;
+    getTotalPrice(state, price) {
+      state.totalPrice = price;
       storageFunc(state);
     },
     // 총 카트 개수
-    totalCount(state) {
+    getTotalCount(state) {
       let count = 0;
       state.cart.forEach((item) => {
         count += item.quantity;
       });
-      state.total_count = count;
+      state.totalCount = count;
       storageFunc(state);
     },
     deliveryDate(state, day) {
       state.deliveryDate = day;
     },
     // 모달 팝업 상태값
-    shave_modal(state, [payload, shave]) {
+    isShaveModal(state, [payload, shave]) {
       // 면도기 색상 선택 후 아이템 추가
       if (shave) {
         let result = state.items.find((tem) => {
@@ -158,9 +150,9 @@ const store = new Vuex.Store({
         });
         store.commit("addCart", result);
         store.commit("updateItems", result);
-        store.commit("totalCount");
+        store.commit("getTotalCount");
       }
-      state.shave_modal = payload;
+      state.shaveModal = payload;
       storageFunc(state);
     },
   },

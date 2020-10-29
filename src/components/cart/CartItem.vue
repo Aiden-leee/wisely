@@ -66,12 +66,12 @@ export default {
     //면도기 색상 이름
     selectShaveColorName() {
       let colorName = ["미드나이트 네이비", "사파이어 블루", "슬레이트 그레이"];
-      return colorName[this.$store.state.shave_color - 1];
+      return colorName[this.$store.state.shaveColor - 1];
     },
     // 면도기 색상 클래스
     selectShaveColorClass() {
       let colorClass = ["navy", "blue", "gray"];
-      return colorClass[this.$store.state.shave_color - 1];
+      return colorClass[this.$store.state.shaveColor - 1];
     },
   },
   methods: {
@@ -82,9 +82,9 @@ export default {
       });
       this.$store.commit("revertItem", item);
       this.$store.commit("removeCart", item);
-      this.$store.commit("totalCount");
+      this.$store.commit("getTotalCount");
       if (this.$store.state.cart.length < 1) {
-        this.$store.commit("totalPrice", 0);
+        this.$store.commit("getTotalPrice", 0);
       }
     },
     // 수량 감소
@@ -94,13 +94,13 @@ export default {
       }
       this.quantityValue--;
       this.$store.commit("minusQuantity", [item, this.quantityValue]);
-      this.$store.commit("totalCount");
+      this.$store.commit("getTotalCount");
     },
     // 수량 증가
     quantityIncrement(item) {
       this.quantityValue++;
       this.$store.commit("plusQuantity", [item, this.quantityValue]);
-      this.$store.commit("totalCount");
+      this.$store.commit("getTotalCount");
     },
   },
 };

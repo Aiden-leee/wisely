@@ -42,10 +42,10 @@ export default {
       if (!item.isModal) {
         this.$store.commit("addCart", item);
         this.$store.commit("updateItems", item);
-        this.$store.commit("totalCount");
+        this.$store.commit("getTotalCount");
       } else {
         // 면도기 모달 창
-        this.$store.commit("shave_modal", [true]);
+        this.$store.commit("isShaveModal", [true]);
       }
     },
   },

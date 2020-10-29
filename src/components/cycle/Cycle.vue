@@ -10,8 +10,8 @@
             <span class="count">{{ isTotalCount }}</span>
           </div>
           <div class="current_price" :class="{ active: currentCartActive }">
-            <span v-if="this.$store.state.total_price !== 0"
-              >₩{{ this.$store.state.total_price.toLocaleString() }}</span
+            <span v-if="this.$store.state.totalPrice !== 0"
+              >₩{{ this.$store.state.totalPrice.toLocaleString() }}</span
             >
           </div>
         </div>
@@ -81,8 +81,8 @@ export default {
   computed: {
     // 총 개수
     isTotalCount() {
-      return this.$store.state.total_count >= 1
-        ? this.$store.state.total_count
+      return this.$store.state.totalCount >= 1
+        ? this.$store.state.totalCount
         : "";
     },
     // 다음 결제일
@@ -109,7 +109,7 @@ export default {
   methods: {
     // 현재 카트 아이템 목록 모달창
     currentViewCart() {
-      this.$store.state.total_count === 0 ? this.$router.push("/") : "";
+      this.$store.state.totalCount === 0 ? this.$router.push("/") : "";
       this.currentCartActive = !this.currentCartActive;
     },
     // 달력 모달 열기

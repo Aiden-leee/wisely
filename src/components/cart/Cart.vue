@@ -80,7 +80,7 @@ export default {
       this.$store.state.cart.forEach((item) => {
         price += item.price * item.quantity;
       });
-      this.$store.commit("totalPrice", price);
+      this.$store.commit("getTotalPrice", price);
       return price;
     },
     // 총 개수
@@ -89,7 +89,7 @@ export default {
       this.$store.state.cart.forEach((item) => {
         count += item.quantity;
       });
-      this.$store.commit("totalCount");
+      this.$store.commit("getTotalCount");
       return count;
     },
   },

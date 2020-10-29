@@ -25,17 +25,17 @@ export default {
     this.$store.state.cart.forEach((item) => {
       price += item.price * item.quantity;
     });
-    this.$store.commit("totalPrice", price);
+    this.$store.commit("getTotalPrice", price);
     // 총 개수
     let count = 0;
     this.$store.state.cart.forEach((item) => {
       count += item.quantity;
     });
-    this.$store.commit("totalCount", count);
+    this.$store.commit("getTotalCount", count);
   },
   computed: {
     isModal() {
-      return this.$store.state.shave_modal;
+      return this.$store.state.shaveModal;
     },
   },
 };
